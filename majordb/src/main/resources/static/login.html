@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <login></login>
+    </div>
+</body>
+<template id="login">
+    <div >
+       用户名<input type="text" id="userName" v-model="userName">
+       密码 <input type="password" id="passWord" v-model="passWord">
+        <span @click="delu">登录</span>
+    </div>
+</template>
+<script>
+   var vm= new Vue({
+        el:"#app",
+       data:{
+
+       },
+       components:{
+           'login':{
+               template:'#login',
+               data: function (){
+                 return {
+                     userName:'',
+                     passWord:''
+                   }
+                },
+               methods:{
+                   delu:function (){
+
+                   }
+               }
+           }
+       }
+    })
+</script>
+</html>

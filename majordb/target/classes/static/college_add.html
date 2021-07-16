@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="js/vue.js"></script>
+  <script src="js/axios.js"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div style="width:500px; margin:0px auto" id="box">
+<h3 style="text-align:center">添加学院信息</h3>
+<table width="500" border="1">
+  <tr>
+    <td align="left" valign="middle">学院名称</td>
+    <td><label>
+      <input type="text" v-model="cname" name="cname" id="cname"/>
+    </label></td>
+  </tr>
+  <tr>
+    <td align="left" valign="middle">创办时间</td>
+    <td><input type="date" v-model="createtime" name="cname3" id="cname3" />
+      (yyyy-MM-dd)</td>
+  </tr>
+  <tr>
+    <td height="45" colspan="2" align="center" valign="middle"><label>
+<!--      <input type="submit" name="btnAdd" id="btnAdd" value="添加学院信息" />-->
+      <button @click="tianjia" >添加学院信息</button>
+      <input type="reset" name="btnCacel" id="btnCacel" value="重置" />
+    </label></td>
+  </tr>
+</table>
+</div>
+</body>
+<script>
+  var baseUrl = "http://localhost:8081/"
+  var vm = new Vue({
+    el: '#box',// 指定挂载元素
+    data: {//json数据
+      cname:'',
+      createtime:''
+    },
+    methods:{//方法
+      tianjia:function (){
+        alert(cname)
+        var this_=this;
+        axios.get(baseUrl+"college/add",{
+          params:{cname:this_.cname,
+                  createtime:this_.createtime
+          }
+        }
+        ).then(function (resp){
+            console.log(resp)
+        })
+      }
+    },
+  })
+</script>
+</html>

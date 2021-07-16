@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>学院列表</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+<body>
+<div id="box" style="width:800px; margin:0px auto">
+    <h3 style="text-align:center">学院信息列表</h3>
+    <div style="width:780px; margin:0px auto; padding-right:20px; text-align:right; height:30px; line-height:30px">
+        <a href="college_add.html"> 添加院系</a>
+        <a href="major_list.html"> 编辑专业</a>
+    </div>
+    <div style="width:800px; margin:0px auto; text-align:center; line-height:40px; height:40px;">
+        <label style="display: inline-block; width: 200px"></label>
+    </div>
+    <table width="800" border="1">
+        <tr>
+            <td>学院编号</td>
+            <td>学院名称</td>
+            <td>创办时间</td>
+        </tr>
+        <tr  v-for="(item,index) in arr">
+            <td>{{item.cid}}</td>
+            <td>{{item.cname}}</td>
+            <td>{{item.createtime|format}}</td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+<script>
+    var baseUrl = "http://localhost:8081/"
+
+
+    var vm = new Vue({
+        el: '#box',// 指定挂载元素
+        data: {//json数据
+            name:'张三',
+            arr:[],
+        },
+        methods:{//方法
+
+        },
+        mounted: function () {//钩子函数
+            var this_ = this;
+            // 挂载元素之后，通过ajax获取数据
+            axios.get(baseUrl+"college/list").then(function (response) {
+                //console.log(response)
+                this_.arr=response.data.data;
+                console.log(this_.arr)
+            })
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    #数据源配置（Spring Boot 2默认数据库连接池选择了HikariCP），通过type指定数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    #?serverTimezone=UTC解决时区的报错
+    #在设定时区的时候，如果设定serverTimezone=UTC，会比中国时间早8个小时，如果在中国，可以选择Asia/Shanghai或者Asia/Hongkong
+    url: jdbc:mysql://localhost:3306/majordb?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    #mysql6.0之后使用com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+    #Spring Boot 默认是不注入这些属性值的，需要自己绑定
+    #druid 数据源专有配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.springbootdemo.pojo
+  #定义实体类别名配置
+  mapper-locations: classpath:mapper/*Mapper.xml
+  #输出mybatis打印sql日志
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+server:
+  port: 8081
+#  servlet:
+#    context-path: /system

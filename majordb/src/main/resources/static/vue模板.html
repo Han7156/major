@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue练习</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.js"></script>
+</head>
+<body>
+    <!-- view -->
+    <div id="box">
+
+    </div>
+</body>
+
+<script>
+    var vm = new Vue({
+        el: '#box',// 指定挂载元素
+        data: {//json数据
+            name:'张三'
+        },
+        methods:{//方法
+
+        },
+        mounted: function () {//钩子函数
+            // 挂载元素之后，通过ajax获取数据
+        }
+    })
+</script>
+</html>
